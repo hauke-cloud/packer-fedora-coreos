@@ -57,7 +57,6 @@ variable "snapshot_name" {
 
 locals {
   build_labels = {
-    "image"                = "${local.image}"
     "os-flavor"            = "coreos"
     "packer.io/build.id"   = "${uuidv4()}"
     "packer.io/build.time" = "{{timestamp}}"
