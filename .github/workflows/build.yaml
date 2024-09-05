@@ -25,7 +25,7 @@ jobs:
         id: templatefile
         run: |
           templatefile=$(find . -name "*.hcl" | head -1)
-          echo "templatefile=$templatefile" >> $GITHUB_OUTPUTS
+          echo "templatefile=$templatefile" >> $GITHUB_OUTPUT
 
   build-lab:
     name: Build images in lab
