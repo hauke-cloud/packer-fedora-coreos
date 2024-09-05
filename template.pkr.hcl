@@ -53,7 +53,6 @@ variable "version" {
 
 variable "snapshot_name" {
   type    = string
-  default = "coreos-${var.github_branch}"
 }
 
 locals {

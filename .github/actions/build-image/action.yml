@@ -39,7 +39,12 @@ runs:
           additional_vars+=" -var $key=$value"
         done
 
-        packer validate -var hcloud_token=${{ inputs.token }} -var build_identifier=${{ inputs.build-identifier }} $additional_vars ${{ inputs.template }}
+        packer validate \
+          -var hcloud_token=${{ inputs.token }} \
+          -var build_identifier=${{ inputs.build-identifier }} \
+          -var snapshot_name=${{ github.repository }}-${{ github.ref_name }} \
+          $additional_vars \
+          ${{ inputs.template }}
 
     - name: Run `packer build`
       shell: bash
@@ -51,4 +56,14 @@ runs:
           additional_vars+=" -var $key=$value"
         done
 
-        packer build -color=false -force -on-error=cleanup -var hcloud_token=${{ inputs.token }} -var build_identifier=${{ inputs.build-identifier }} -var github_branch=${{ github.ref_name }} -var version=latest $additional_vars ${{ inputs.template }}
+        packer build \
+          -color=false \
+          -force \
+          -on-error=cleanup \
+          -var hcloud_token=${{ inputs.token }} \
+          -var build_identifier=${{ inputs.build-identifier }} \
+          -var github_branch=${{ github.ref_name }} \
+          -var version=latest \
+          -var snapshot_name=${{ github.repository }}-${{ github.ref_name }} \
+          $additional_vars \
+          ${{ inputs.template }}
