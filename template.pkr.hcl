@@ -51,8 +51,12 @@ variable "version" {
   default = "dev"
 }
 
+variable "snapshot_name" {
+  type    = string
+  default = "coreos-${var.github_branch}"
+}
+
 locals {
-  image        = "coreos-${var.github_branch}"
   build_labels = {
     "image"                = "${local.image}"
     "os-flavor"            = "coreos"
@@ -78,7 +82,7 @@ source "hcloud" "x86_64" {
   }
 
   snapshot_labels = local.build_labels
-  snapshot_name   = "${local.image}"
+  snapshot_name   = var.snapshot_name
 
   token    = var.hcloud_token
   location = var.hcloud_location
