@@ -10,23 +10,6 @@ on:
     types: [trigger-workflow]
 
 jobs:
-  prepare:
-    name: Prepare builds
-    runs-on: ubuntu-latest
-
-    outputs:
-      templatefile: ${{ steps.templatefile.outputs.templatefile }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Find template file
-        id: templatefile
-        run: |
-          templatefile=$(find . -name "*.hcl" | head -1)
-          echo "templatefile=$templatefile" >> $GITHUB_OUTPUT
-
   build-lab:
     name: Build images in lab
     environment: lab
@@ -52,7 +35,7 @@ jobs:
       - name: Build image
         uses: ./.github/actions/build-image
         with:
-          template: ${{ needs.prepare.outputs.templatefile }}
+          template: template.pkr.hcl
           token: ${{ secrets.HCLOUD_TOKEN }}
           build-identifier: github-actions-${{ github.repository_id }}-${{ github.run_number }}
           trigger-payload: ${{ github.event.client_payload }}
@@ -82,7 +65,7 @@ jobs:
       - name: Build image
         uses: ./.github/actions/build-image
         with:
-          template: ${{ needs.prepare.outputs.templatefile }}
+          template: template.pkr.hcl
           token: ${{ secrets.HCLOUD_TOKEN }}
           build-identifier: github-actions-${{ github.repository_id }}-${{ github.run_number }}
           trigger-payload: ${{ github.event.client_payload }}
@@ -112,7 +95,7 @@ jobs:
       - name: Build image
         uses: ./.github/actions/build-image
         with:
-          template: ${{ needs.prepare.outputs.templatefile }}
+          template: template.pkr.hcl
           token: ${{ secrets.HCLOUD_TOKEN }}
           build-identifier: github-actions-${{ github.repository_id }}-${{ github.run_number }}
           trigger-payload: ${{ github.event.client_payload }}
