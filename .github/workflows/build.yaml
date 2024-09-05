@@ -55,6 +55,7 @@ jobs:
           template: ${{ needs.prepare.outputs.templatefile }}
           token: ${{ secrets.HCLOUD_TOKEN }}
           build-identifier: github-actions-${{ github.run_number }}
+          trigger-payload: ${{ github.event.client_payload }}
 
   build-home:
     name: Build images in home (private environment)
@@ -84,6 +85,7 @@ jobs:
           template: ${{ needs.prepare.outputs.templatefile }}
           token: ${{ secrets.HCLOUD_TOKEN }}
           build-identifier: github-actions-${{ github.run_number }}
+          trigger-payload: ${{ github.event.client_payload }}
 
   build-public:
     name: Build images in production
@@ -113,6 +115,7 @@ jobs:
           template: ${{ needs.prepare.outputs.templatefile }}
           token: ${{ secrets.HCLOUD_TOKEN }}
           build-identifier: github-actions-${{ github.run_number }}
+          trigger-payload: ${{ github.event.client_payload }}
 
   cleanup-lab:
     name: Clean up development resources
