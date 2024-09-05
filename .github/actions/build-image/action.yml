@@ -42,7 +42,7 @@ runs:
         packer validate \
           -var hcloud_token=${{ inputs.token }} \
           -var build_identifier=${{ inputs.build-identifier }} \
-          -var snapshot_name=${{ github.repository }}-${{ github.ref_name }} \
+          -var snapshot_name=$(echo $GITHUB_REPOSITORY | -cut -d/ -f2)-${{ github.ref_name }} \
           $additional_vars \
           ${{ inputs.template }}
 
@@ -64,6 +64,6 @@ runs:
           -var build_identifier=${{ inputs.build-identifier }} \
           -var github_branch=${{ github.ref_name }} \
           -var version=latest \
-          -var snapshot_name=${{ github.repository }}-${{ github.ref_name }} \
+          -var snapshot_name=$(echo $GITHUB_REPOSITORY | -cut -d/ -f2)-${{ github.ref_name }} \
           $additional_vars \
           ${{ inputs.template }}
