@@ -1,10 +1,8 @@
-
-
 # Template Repository
 
 <img src="https://raw.githubusercontent.com/hauke-cloud/.github/main/resources/img/organisation-logo-small.png" align="right" alt="hauke.cloud logo" width="109" height="123">
 
-Template repository for hauke.cloud projects
+This repository provides a Hetzner golden image containing the hauke.cloud Fedora CoreOS
 
 ## Table of Contents
 
@@ -29,6 +27,7 @@ This Project is licensed under the GNU General Public License v3.0
 ## :coffee: Contributing
 
 To become a contributor, please check out the [CONTRIBUTING](CONTRIBUTING.md) file.
+
 ## :email: Contact
 
 For any inquiries or support requests, please open an issue in this
