@@ -41,8 +41,8 @@ runs:
       run: |
         echo "Processing payload..."
         additional_vars=""
-        for key in $(echo ${{ toJson(inputs.trigger-payload) }} | jq -r 'keys[]'); do
-          value=$(echo ${{ toJson(inputs.trigger-payload) }} | jq -r ".[$key]")
+        for key in $(echo ${{ inputs.trigger-payload }} | jq -r 'keys[]'); do
+          value=$(echo ${{ inputs.trigger-payload }} | jq -r ".[$key]")
           echo "Adding variable $key=$value"
           additional_vars+=" -var $key=$value"
         done
