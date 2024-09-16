@@ -39,7 +39,7 @@ runs:
       id: validate
       shell: bash
       env:
-        PAYLOAD: ${{ inputs.trigger-payload }}
+        PAYLOAD: ${{ toJson(inputs.trigger-payload) }}
       run: |
         echo "Processing payload..."
         additional_vars=""
@@ -59,7 +59,7 @@ runs:
     - name: Run `packer build`
       shell: bash
       env:
-        PAYLOAD: ${{ inputs.trigger-payload }}
+        PAYLOAD: ${{ toJson(inputs.trigger-payload) }}
       run: |
         echo "Processing payload..."
         additional_vars=""
