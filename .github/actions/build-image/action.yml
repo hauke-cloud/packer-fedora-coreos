@@ -41,6 +41,12 @@ runs:
       run: |
         echo "Processing payload..."
         payload='${{ inputs.trigger-payload }}'
+
+        # Set default value
+        if [[ -z "${payload}" ]]; then
+          payload='{}'
+        fi
+
         additional_vars=$(echo "$payload" | jq -r 'to_entries | map("-var \(.key)=\(.value)") | join(" ")')
 
         echo "Adding additional settings: ${additional_vars}"
@@ -57,6 +63,12 @@ runs:
       run: |
         echo "Processing payload..."
         payload='${{ inputs.trigger-payload }}'
+
+        # Set default value
+        if [[ -z "${payload}" ]]; then
+          payload='{}'
+        fi
+
         additional_vars=$(echo "$payload" | jq -r 'to_entries | map("-var \(.key)=\(.value)") | join(" ")')
 
         echo "Adding additional settings: ${additional_vars}"
