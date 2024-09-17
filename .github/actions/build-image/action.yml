@@ -42,14 +42,10 @@ runs:
         echo "Processing payload..."
         payload='${{ inputs.trigger-payload }}'
 
-        # Set default value
-        if [[ -z "${payload}" ]]; then
-          payload='{}'
+        if [[ ! -z "${payload}" ]]; then
+          additional_vars=$(echo "$payload" | jq -r 'to_entries | map("-var \(.key)=\(.value)") | join(" ")')
+          echo "Adding additional settings: ${additional_vars}"
         fi
-
-        additional_vars=$(echo "$payload" | jq -r 'to_entries | map("-var \(.key)=\(.value)") | join(" ")')
-
-        echo "Adding additional settings: ${additional_vars}"
 
         packer validate \
           -var hcloud_token=${{ inputs.token }} \
@@ -64,14 +60,10 @@ runs:
         echo "Processing payload..."
         payload='${{ inputs.trigger-payload }}'
 
-        # Set default value
         if [[ -z "${payload}" ]]; then
-          payload='{}'
+          additional_vars=$(echo "$payload" | jq -r 'to_entries | map("-var \(.key)=\(.value)") | join(" ")')
+          echo "Adding additional settings: ${additional_vars}"
         fi
-
-        additional_vars=$(echo "$payload" | jq -r 'to_entries | map("-var \(.key)=\(.value)") | join(" ")')
-
-        echo "Adding additional settings: ${additional_vars}"
 
         packer build \
           -color=false \
