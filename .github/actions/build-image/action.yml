@@ -42,7 +42,7 @@ runs:
         echo "Processing payload..."
         payload='${{ inputs.trigger-payload }}'
 
-        if [[ "${payload}" == "null"  ]]; then
+        if [[ "${payload}" != "null"  ]]; then
           additional_vars=$(echo "$payload" | jq -r 'to_entries | map("-var \(.key)=\(.value)") | join(" ")')
           echo "Adding additional settings: ${additional_vars}"
         fi
@@ -60,7 +60,7 @@ runs:
         echo "Processing payload..."
         payload='${{ inputs.trigger-payload }}'
 
-        if [[ "${payload}" == "null" ]]; then
+        if [[ "${payload}" != "null" ]]; then
           additional_vars=$(echo "$payload" | jq -r 'to_entries | map("-var \(.key)=\(.value)") | join(" ")')
           echo "Adding additional settings: ${additional_vars}"
         fi
