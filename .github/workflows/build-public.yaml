@@ -1,4 +1,4 @@
-name: PUBLIC triggered by ${{ github.event.action || 'custom_dispatch' }}
+name: Build PUBLIC
 
 on:
   schedule:

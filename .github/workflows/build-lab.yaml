@@ -1,4 +1,4 @@
-name: LAB triggered by ${{ github.event.action || 'custom_dispatch' }}
+name: Build LAB
 
 on:
   schedule:
