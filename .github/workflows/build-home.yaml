@@ -1,4 +1,4 @@
-name: hcp-packer
+name: HOME triggered by ${{ github.event.action || 'custom_dispatch' }}
 
 on:
   schedule:
