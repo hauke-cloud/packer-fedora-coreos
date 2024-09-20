@@ -57,6 +57,7 @@ variable "snapshot_name" {
 
 locals {
   build_labels = {
+    "name"                 = "fedora-coreos"
     "os-flavor"            = "coreos"
     "packer.io/build.id"   = "${uuidv4()}"
     "packer.io/build.time" = "{{timestamp}}"
