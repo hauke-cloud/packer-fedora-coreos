@@ -8,11 +8,13 @@ on:
     branches:
       - dev
       - home
+      - main
 
   repository_dispatch:
     types:
       - trigger-dev
       - trigger-home
+      - trigger-main
 
 jobs:
   build:
