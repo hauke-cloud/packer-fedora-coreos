@@ -24,6 +24,10 @@ jobs:
 
     if: github.event.schedule != '0 0 * * *'
 
+    concurrency:
+      group: home
+      cancel-in-progress: false
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
